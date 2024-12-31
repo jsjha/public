@@ -111,33 +111,67 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: auto; */
-    height: 80vh; /*Full viewport height*/
+    height: auto; /* Allow height to adjust based on content */
+    min-height: 80vh; /* Ensure a minimum height to avoid cutting off */
     background: url('images/red_image.jpg') no-repeat center center; /* Add the image */
     background-size: cover; /* Ensures the image covers the entire container */
     background-color: #000000; /* Optional background color */
-  }
+    padding: 20px; /* Add padding to prevent the text from touching the edges */
+    width: 100%; /* Ensure container takes full width */
+    box-sizing: border-box; /* Include padding in width calculation */
+}
 
-  /* Typewriter Effect */
+/* Typewriter Effect */
 #name {
     font-family: Courier, monospace;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: #ffffff;
     overflow: hidden;
-    white-space: nowrap;
-    border-right: 3px solid #ffffff;
+    white-space: nowrap; /* Prevent wrapping during the typewriter effect */
+    border-right: 3px solid #ffffff; /* The cursor */
     animation: blink-caret 0.5s step-end infinite;
-  }
-  
-  /* Blink caret animation */
-  @keyframes blink-caret {
+    display: inline-block; /* Ensures the element only takes up the width of the text */
+    width: auto; /* Automatically adjust width based on content */
+    text-align: center; /* Center the text */
+    word-wrap: break-word; /* Allow wrapping of text when it exceeds the width */
+    max-width: 100%; /* Ensures text doesn't go beyond container */
+}
+
+/* Blink caret animation */
+@keyframes blink-caret {
     from {
-      border-right-color: #ffffff;
+        border-right-color: #ffffff;
     }
     to {
-      border-right-color: transparent;
+        border-right-color: transparent;
     }
-  }
+}
+
+/* Text wrapper for typewriter effect to ensure it doesn't get cut off */
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+/* Media Query for Smaller Screens */
+@media (max-width: 750px) {
+    #name {
+        font-size: 2.0rem; /* Reduce font size on smaller screens */
+        white-space: normal; /* Allow wrapping of the text after the typing effect */
+        }
+}
+
+/* Media Query for Larger Screens */
+@media (min-width: 751px) {
+    #name {
+        font-size: 2.8rem; /* Default size */
+    }
+}
+
   
   /* Hidden state for introduction */
   .hidden {
@@ -168,7 +202,7 @@
     color: #ffffff;
     font-family: Courier, monospace;
     margin-top: 40px; /* Add extra space before each section title */
-    margin-bottom: 20px; /* Space between the title and its content */
+    margin-bottom: 40px; /* Space between the title and its content */
   }
   
 
@@ -180,6 +214,7 @@
   
   /* Introduction Section */
   #introduction {
+    margin-top: 100px;
     margin-bottom: 40px;
     font-family: Courier, monospace;
     color: #ffffff;
@@ -187,7 +222,7 @@
   
   /* Navigation Section */
   #navigation {
-    margin-top: 40px;
+    margin-top: 100px;
   }
   
   /* Grid Container for Items */
@@ -201,9 +236,23 @@
     margin: 0 auto; /* Center the grid container */
     margin-top: 20px; /* Ensure there's space between the title and the grid */
   }
+
+  @media (min-width: 1200px) {
+    .project-grid, .book-grid {
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Even bigger items for very large screens */
+    }
+  
+    .nav-item {
+      padding: 25px; /* More padding on large screens */
+    }
+  
+    .nav-item img {
+      width: 95%; /* Larger images */
+    }
+  }
   
   /* Styling for Captions and Descriptions */
-  .item-caption {
+.item-caption {
     font-size: 1.1rem; /* Adjust font size */
     color: #ffffff; /* Text color */
     margin-top: auto; /* Space between button and caption */
@@ -220,31 +269,40 @@
     margin-top: 5px;
   }
   
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Grid layout with auto-fill and min/max column sizes */
+    gap: 20px; /* Space between grid items */
+  }
+  
   .nav-item {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    width: 100%;  /* Ensure the width is set */
+    justify-content: space-between; /* Space between caption, image, and description */
     text-decoration: none;
-    border: 2px solid white;  /* White border around the item */
-    padding: 10px;
+    border: 2px solid white; /* White border around the item */
+    padding: 20px;
     border-radius: 10px;
     transition: transform 0.3s ease, background-color 0.3s ease;
     text-align: center;
-    box-sizing: border-box; /* Ensures padding doesn’t affect the overall width/height */
-}
-
-.nav-item img {
-    width: 85%;
+    box-sizing: border-box;
+    min-height: 350px; /* Minimum height for consistent size */
+    height: 100%; /* Ensures items scale to the same size */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align items at the top of the container */
+  }
+  
+  .nav-item img {
+    width: 100%; /* Ensure images stretch to 100% of their container width */
     height: auto;
     border: 2px solid white;
     display: block;
-    margin: auto; /* Centers the image within the parent container */
-}
-
+    margin-bottom: 10px; /* Space between image and caption */
+  }
   
   .nav-item:hover {
-    transform: scale(1.15);  /* Slight zoom effect */
+    transform: scale(1.05); /* Slight zoom effect */
     background-color: #7b0000; /* Hover background color */
   }
   
@@ -252,12 +310,25 @@
     transform: scale(1.05); /* Zoom effect for images */
   }
   
+  /* Adjust scale for smaller screens */
+  @media screen and (max-width: 600px) {
+    .nav-item:hover {
+      transform: scale(1.03); /* Reduce scale on smaller screens */
+    }
+  }
+  
+  
+  .nav-item:hover img {
+    transform: scale(1.05); /* Zoom effect for images */
+  }  
+  
   /* Footer Styling */
   footer {
     text-align: center; /* Center footer text */
     margin-top: 100px;
     font-size: 0.9rem;
     font-family: Courier, monospace;
+    margin-bottom: 50px;
   }
   
   #footer {
