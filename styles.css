@@ -320,7 +320,27 @@
   
   .nav-item:hover img {
     transform: scale(1.05); /* Zoom effect for images */
-  }  
+  } 
+  
+  
+
+   /* Embed the PDF to take up the whole screen width */
+   embed {
+    padding-top: 100px;
+    display: block;
+    margin: 0 auto;
+    width: 90%;  /* Adjust to fit the screen */
+    height: 95vh;  /* Set a reasonable height */
+    border: none;
+  }
+
+  /* Optional: Adding responsiveness for smaller screens */
+  @media (max-width: 768px) {
+    embed {
+      width: 100%; /* Full width on smaller screens */
+      height: 95vh; /* Adjust height for mobile devices */
+    }
+  }
   
   /* Footer Styling */
   footer {
@@ -335,5 +355,7 @@
     color: #ffffff;
     font-family: Courier, monospace; /* Ensures the footer has monospace font */
   }
+
+
   
   
