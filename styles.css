@@ -273,12 +273,14 @@
   
   /* Styling for Captions and Descriptions */
 .item-caption {
-    font-size: 1.1rem; /* Adjust font size */
+    font-size: 1.3rem; /* Adjust font size */
     color: #ffffff; /* Text color */
     margin-top: 5px; /* Space between button and caption */
     text-align: center; /* Center the caption */
     font-family: Courier, monospace;
-    padding-top: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-weight: bold;
   }
   
   .item-description {
