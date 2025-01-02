@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Welcome to Jessi Jha's personal website. Learn more about me, my projects, and my journey.">
+  <title>Jessi Jha - Home</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/Circle-red-removebg-preview.png" sizes="32x32">
+</head>
+<body>
+
+  <!-- Load EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.11.0/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS
+    emailjs.init('7nLFFPe7iW_4z1yUm'); // Replace with your actual EmailJS user ID
+  </script>
+
+  <!-- Navigation Bar -->
+  <nav id="navbar">
+    <button id="navbar-toggle" aria-label="Toggle navigation menu">☰</button>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <script>
+    const navbarToggle = document.getElementById('navbar-toggle');
+    const navbar = document.getElementById('navbar');
+
+    navbarToggle.addEventListener('click', () => {
+      navbar.classList.toggle('show-menu');
+    });
+  </script>
+
+  <!-- Name and Introduction -->
+  <div id="name-container">
+    <h1 id="name-page"></h1>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const nameElement = document.getElementById("name-page");
+      const introElement = document.getElementById("introductionC");
+      const nameText = "Contact Me!";
+      let index = 0;
+
+      function typeWriter() {
+        if (index < nameText.length) {
+          nameElement.textContent += nameText.charAt(index);
+          index++;
+          setTimeout(typeWriter, 150);
+        } else {
+          setTimeout(() => {
+            introElement.classList.remove("hidden");
+            introElement.classList.add("visible");
+          }, 500);
+        }
+      }
+
+      typeWriter();
+    });
+  </script>
+
+  <!-- Contact Form -->
+  <main>
+
+    <section>
+        <p id="introductionC" class="hidden">Feel free to reach out using the form below!</p>
+    </section>
+
+    <section id="contact">
+      <form id="contact-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required><br><br>
+        
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" rows="5" required></textarea><br><br>
+        
+        <button type="submit">Send Message</button>
+      </form>
+      <!-- <p id="confirmation-message" style="display: none; color: rgb(207, 210, 207);">Your message has been sent successfully!</p> -->
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("contact-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      
+      const formData = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        subject: document.getElementById("subject").value,
+        message: document.getElementById("message").value,
+      };
+
+      emailjs.send('service_xyn2unn', 'template_46916ur', formData)
+        .then(function(response) {
+          console.log('Success:', response);
+          alert('Message sent!');
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+          alert('Failed to send message. Please try again later.');
+        });
+
+      document.getElementById("contact-form").reset();
+    });
+
+  </script>
+
+  <!-- Footer -->
+  <footer id="footer">
+    <section id="footer">
+      <p>&copy; 2024 Jessi Jha. All rights reserved.</p>
+      <p><a href="https://github.com/jsjha">GitHub</a> | <a href="https://www.linkedin.com/in/jessijha">LinkedIn</a></p>
+    </section>
+  </footer> 
+
+</body>
+</html>
